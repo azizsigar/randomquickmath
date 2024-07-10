@@ -1,4 +1,75 @@
 body {
+    background-color: cornflowerblue;
+    margin: auto;
+    display: flex;
+    height: 50vh;
+    justify-content: center;
     text-align: center;
-    background-color: #282c34;
+    align-items: center;
+    font-size: xx-large;
+    font-family: monospace;
+}
+
+/* CSS */
+.button-74 {
+  background-color: #fbeee0;
+  border: 2px solid black;
+  border-radius: 30px;
+  box-shadow: black 4px 4px 0 0;
+  color: black;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-74:hover {
+  background-color: #fff;
+}
+
+.button-74:active {
+  box-shadow: black 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .button-74 {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
+input{
+    width: 90%;
+    height: 20px;
+    border-radius: 10px;
+    border: 2px solid black;
+    box-shadow: 4px 4px black;
+    padding: 10px;
+    margin: auto;
+    margin: 10px;
+    font-size:x-large;
+    font-family: monospace;
+
+}
+input:hover{
+    background-color: #fbeee0;
+    
+
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    margin: auto;
+
+
 }

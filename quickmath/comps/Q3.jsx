@@ -40,7 +40,7 @@ const Q3 = () => {
       <div>{num1} x {num2} =</div>
       <input type="text" value={userInput} onChange={handleChange} />
       <div>
-        <button onClick={handleCheck}>check</button>
+        <button className="button-74" onClick={handleCheck}>check</button>
       </div>
     </div>
   );

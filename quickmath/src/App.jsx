@@ -1,17 +1,17 @@
 import React from "react";
-import Q1 from "../comps/Q1.jsx";
 import "./App.css";
 import RandomComponent from "../comps/RandomComp.jsx";
+import Q2 from "../comps/Q2.jsx";
 
 
 function App() {
 
   return (
-    <>
-    {/* <Q1 /> */}
+    <div className="main">
+
+    {/* <Q2 /> */}
     <RandomComponent />
-      <h1>hi</h1>
-    </>
+    </div>
   );
 }
 
