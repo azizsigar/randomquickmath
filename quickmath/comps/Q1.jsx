@@ -79,7 +79,7 @@ const Q1 = () => {
       <div>
         {num1} + {num2} =
       </div>
-      <input type="digit" value={userInput} onChange={handleChange} />
+      <input type="number" value={userInput} onChange={handleChange} />
       <div>
         <button className="button-74" onClick={handleCheck}>
           Check
