@@ -1,16 +1,17 @@
 import React from "react";
 import "./App.css";
+import { Toaster } from 'react-hot-toast';
 import RandomComponent from "../comps/RandomComp.jsx";
-import Q2 from "../comps/Q2.jsx";
+import Q1 from "../comps/Q1.jsx";
 
 
 function App() {
 
   return (
     <div className="main">
-
-    {/* <Q2 /> */}
-    <RandomComponent />
+<div><Toaster/></div>
+    <Q1 />
+    {/* <RandomComponent /> */}
     </div>
   );
 }
