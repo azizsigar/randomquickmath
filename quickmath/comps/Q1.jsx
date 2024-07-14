@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import correctAnswerSound from "../media/pass.mp3"; // Ses dosyasını içe aktarın
-import errorSound from "../media/errorcombomaster.mp3"; // Ses dosyasını içe aktarın
-
+import failCombo from "../media/errorcombomaster.mp3"; // Ses dosyasını içe aktarın
+import failEffect from "../media/error.mp3"; // Ses dosyasını içe aktarın
 const Q1 = () => {
   const randomNum = () => {
     let num = Math.floor(Math.random() * 100);
@@ -19,9 +19,8 @@ const Q1 = () => {
   const [errorCount, setErrorCount] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
   const correctAnswerAudio = useRef(new Audio(correctAnswerSound)); // Ses dosyasını oluşturun
-  const errorAudio = useRef(new Audio(errorSound)); 
-
-  useEffect(() => {
+  const errorAudio = useRef(new Audio(failCombo)); 
+  const failEffect = useRef(new Audio(failEffect));
     const n1 = randomNum();
     const n2 = randomNum();
     setNum1(n1);
@@ -29,6 +28,7 @@ const Q1 = () => {
     setNum3(n1 + n2);
 
     // Local storage'dan doğru cevap sayısını al
+    useEffect(() => {
     const savedCorrectCount = localStorage.getItem("correctCount");
     if (savedCorrectCount !== null) {
       setCorrectCount(parseInt(savedCorrectCount));
@@ -54,6 +54,7 @@ const Q1 = () => {
       toast.error("Try again", {
         duration: 500,
       });
+      failEffect.current.play();
       setCorrectCount(0);
       localStorage.setItem("correctCount", 0);
 
