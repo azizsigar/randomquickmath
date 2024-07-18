@@ -1,6 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import correctAnswerSound from "../media/pass.mp3";
+import failEffect from "../media/error.mp3";
+
+import { toast } from "react-hot-toast";
+
+// failuire message https://www.myinstants.com/en/instant/nope/?utm_source=copy&utm_medium=share
+//succes https://www.myinstants.com/en/instant/gta-san-andreas-menu-sound-123/?utm_source=copy&utm_medium=share
 
 const Q2 = () => {
+  const correctAnswerAudio = useRef(new Audio(correctAnswerSound)); // Ses dosyasını oluşturun
+  const failAudio = useRef(new Audio(failEffect));
+  
   const randomNum = () => {
     let num = Math.floor(Math.random() * 30) + 1; // 1 ile 30 arasında rastgele sayı
     return num;
@@ -35,13 +45,20 @@ const Q2 = () => {
   }, []);
 
   const handleChange = (event) => {
-    setUserInput(event.target.value); // Kullanıcının girişini güncelle
+    setUserInput(event.target.value); 
   };
 
-  const handleCheck = () => {
+  const handleCheck = async() => {
     if (parseInt(userInput) === num3) {
-      window.location.reload(); // Doğru cevap verildiğinde sayfayı yeniden yükle
+     await correctAnswerAudio.current.play();
+     toast.success("Correct Answer",{icon: '🎉'},{duration:300});
+     setTimeout(() => {
+      window.location.reload();
+    }, 1200);      
+
     } else {
+      await failAudio.current.play();
+      toast.success("try again", {icon: '🔄'},{duration:200});
       console.log("wrong number");
     }
   };
@@ -53,9 +70,9 @@ const Q2 = () => {
       <div>
         {num1} - {num2} ={" "}
       </div>
-      <input type="text" value={userInput} onChange={handleChange} />
+      <input type="number" value={userInput} onChange={handleChange} />
       <div>
-        <button className="button-74" onClick={handleCheck}>check</button>
+        <button className="button-74" onClick={handleCheck}>Check</button>
       </div>
     </div>
   );

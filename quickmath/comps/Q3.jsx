@@ -1,10 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 
+
+import correctAnswerSound from "../media/pass.mp3";
+import failEffect from "../media/error.mp3";
+import { toast } from "react-hot-toast";
 const Q3 = () => {
+  const correctAnswerAudio = useRef(new Audio(correctAnswerSound)); // Ses dosyasını oluşturun
+  const failAudio = useRef(new Audio(failEffect));
+  
+
   const randomNum = () => {
-    let num = Math.floor(Math.random() * 10);
+    let num = Math.floor(Math.random() * 99);
     while (num === 0) {
-      num = Math.floor(Math.random() * 10);
+      num = Math.floor(Math.random() * 22);
     }
     return num;
   };
@@ -26,10 +34,16 @@ const Q3 = () => {
     setUserInput(event.target.value); // Update userInput state with the entered value
   };
 
-  const handleCheck = () => {
+  const handleCheck = async() => {
     if (parseInt(userInput) === num3) {
-      window.location.reload(); 
+     await correctAnswerAudio.current.play();
+     toast.success("Correct Answer",{icon: '🎉'},{duration:300});
+     setTimeout(() => {
+      window.location.reload();
+    }, 1200);    
     } else {
+      await failAudio.current.play();
+      toast.error("try again", {icon: '🔄'},{duration:200});
       console.log("its white magic")
     }
   };
@@ -40,7 +54,7 @@ const Q3 = () => {
       <div>{num1} x {num2} =</div>
       <input type="text" value={userInput} onChange={handleChange} />
       <div>
-        <button className="button-74" onClick={handleCheck}>check</button>
+        <button className="button-74" onClick={handleCheck}>Check</button>
       </div>
     </div>
   );
